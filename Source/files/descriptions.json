@@ -1,0 +1,50 @@
+[
+  {
+    "id": "Array_Description",
+    "content": "An array is a collection of items stored at contiguous memory locations. This is the simplest implementation of a data structure containing only a <i>buffer</i> and a <i>length</i> fixed variable."
+  },
+  {
+    "id": "Circular_Buffer_Description",
+    "content": "New description for Circular Buffer"
+  },
+  {
+    "id": "Dynamic_Array_Description",
+    "content": "New description for Dynamic Array"
+  },
+  {
+    "id": "Circular_Linked_List_Description",
+    "content": "New description for Circular Linked List"
+  },
+  {
+    "id": "Doubly_Linked_List_Description",
+    "content": "New description for Doubly Linked List"
+  },
+  {
+    "id": "Singly_Linked_List_Description",
+    "content": "New description for Singly Linked List"
+  },
+  {
+    "id": "Skip_List_Description",
+    "content": "The Skip List has not been implemented yet!"
+  },
+  {
+    "id": "Deque_Description",
+    "content": "A Deque is a double-ended Queue."
+  },
+  {
+    "id": "Deque_Array_Description",
+    "content": "A Deque Array is an implementation of a Deque using a buffer to store its data."
+  },
+  {
+    "id": "Priority_Queue_Description",
+    "content": "New description for Priority Queue"
+  },
+  {
+    "id": "Queue_Description",
+    "content": "New description for Queue"
+  },
+  {
+    "id": "Queue_Array_Description",
+    "content": "New description for Queue Array"
+  }
+]
