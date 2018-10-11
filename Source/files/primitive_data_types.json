@@ -1,0 +1,118 @@
+{
+  "integer": {
+    "id": "integer_select_group",
+    "types": [
+      {
+        "name": "short int",
+        "range": "-32,768 to +32,767",
+        "bytes": "2",
+        "description": "Signed 16 bit integer"
+      },
+      {
+        "name": "unsigned short int",
+        "range": "0 to +65,535",
+        "bytes": "2",
+        "description": "Unsigned 16 bit integer"
+      },
+      {
+        "name": "int",
+        "range": "[-32,768 to +32,767] or [-2,147,483,648 to +2,147,483,647]",
+        "bytes": "2 or 4",
+        "description": "Signed 16/32 bit integer"
+      },
+      {
+        "name": "unsigned int",
+        "range": "[0 to +65,535] or [0 to +4,294,967,295]",
+        "bytes": "2 or 4",
+        "description": "Unsigned 16/32 bit integer"
+      },
+      {
+        "name": "long int",
+        "range": "-2,147,483,648 to +2,147,483,647",
+        "bytes": "4",
+        "description": "Signed 32 bit integer"
+      },
+      {
+        "name": "unsigned long int",
+        "range": "0 to +4,294,967,295",
+        "bytes": "4",
+        "description": "Unsigned 32 bit integer"
+      },
+      {
+        "name": "long long int",
+        "range": "−9,223,372,036,854,775,807 to +9,223,372,036,854,775,807",
+        "bytes": "8",
+        "description": "Signed 64 bit integer"
+      },
+      {
+        "name": "unsigned long long int",
+        "range": "0, +18,446,744,073,709,551,615",
+        "bytes": "8",
+        "description": "Unsigned 64 bit integer"
+      }
+    ]
+  },
+  "character": {
+    "id": "character_select_group",
+    "types": [
+      {
+        "name": "char",
+        "range": "-128 to 127 or 0 to 255",
+        "bytes": "1",
+        "description": "Smallest addressable unit"
+      },
+      {
+        "name": "signed char",
+        "range": "-128 to 127",
+        "bytes": "1",
+        "description": "Guaranteed to be a signed char"
+      },
+      {
+        "name": "unsigned char",
+        "range": "0 to 255",
+        "bytes": "1",
+        "description": "Guaranteed to be an unsigned char"
+      }
+    ]
+  },
+  "float": {
+    "id": "float_select_group",
+    "types": [
+      {
+        "name": "float",
+        "range": "3.4E-38 to 3.4E+38",
+        "bytes": "4",
+        "description": "Floating-point format"
+      },
+      {
+        "name": "double",
+        "range": "1.7E-308 to 1.7E+308",
+        "bytes": "8",
+        "description": "Double precision floating-point format"
+      },
+      {
+        "name": "long double",
+        "range": "3.4E-4932 to 1.1E+4932",
+        "bytes": "10",
+        "description": "Quadruple precision floating-point format"
+      }
+    ]
+  },
+  "other": {
+    "id": "other_select_group",
+    "types": [
+      {
+        "name": "size_t",
+        "range": "0 to <i>SIZE_MAX</i>",
+        "bytes": "4 or 8",
+        "description": "Used whenever measuring the size of something."
+      },
+      {
+        "name": "bool",
+        "range": "0 or 1",
+        "bytes": "1",
+        "description": "Used to represent true or false"
+      }
+    ]
+  }
+}

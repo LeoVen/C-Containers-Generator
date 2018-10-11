@@ -1,0 +1,40 @@
+.tabs-flex {
+    display: flex;
+    justify-content: space-around;
+}
+
+.tabs-flex li {
+    flex: 1;
+}
+
+.container_title {
+    font-size: 32px;
+    font-weight: 300;
+    display: block;
+    line-height: 32px;
+    margin-bottom: 12px;
+}
+
+.container_subtitle {
+    font-size: 24px;
+    font-weight: 300;
+    display: block;
+    line-height: 32px;
+    margin-bottom: 8px;
+}
+
+h6 {
+    font-size: 18px;
+}
+
+hr {
+    height: 1px;
+    color: #ccc;
+    background-color: #ccc;
+    border: none;
+}
+
+.flex-baseline {
+    display: flex;
+    align-items: baseline;
+}

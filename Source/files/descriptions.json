@@ -5,11 +5,19 @@
   },
   {
     "id": "Circular_Buffer_Description",
-    "content": "New description for Circular Buffer"
+    "content": "Circular buffers are fixed-size buffers that work as if the memory is contiguous and circular in nature. <i>Head</i> and <i>Tail</i> pointers are adjusted to simulate a circular structure."
   },
   {
     "id": "Dynamic_Array_Description",
     "content": "New description for Dynamic Array"
+  },
+  {
+    "id": "Hash_Map_Description",
+    "content": "New description for Hash Map"
+  },
+  {
+    "id": "Hash_Set_Description",
+    "content": "New description for Hash Set"
   },
   {
     "id": "Circular_Linked_List_Description",
@@ -46,5 +54,37 @@
   {
     "id": "Queue_Array_Description",
     "content": "New description for Queue Array"
+  },
+  {
+    "id": "Stack_Description",
+    "content": "New description for Stack"
+  },
+  {
+    "id": "Stack_Array_Description",
+    "content": "New description for Stack Array"
+  },
+  {
+    "id": "AVL_Tree_Description",
+    "content": "New description for AVL Tree"
+  },
+  {
+    "id": "Binary_Search_Tree_Description",
+    "content": "New description for Binary Search Tree"
+  },
+  {
+    "id": "Binary_Heap_Description",
+    "content": "New description for Binary Heap"
+  },
+  {
+    "id": "Priority_Heap_Description",
+    "content": "New description for Priority Heap"
+  },
+  {
+    "id": "Red-Black_Tree_Description",
+    "content": "New description for Red-Black Tree"
+  },
+  {
+    "id": "Splay_Tree_Description",
+    "content": "New description for Splay Tree"
   }
 ]
