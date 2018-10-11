@@ -9,6 +9,7 @@
     <!-- Materialize CSS -->
     <link rel="stylesheet" href="css/materialize.min.css">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/styles/atom-one-dark.css">
 </head>
 <body>
 
@@ -45,7 +46,6 @@
             <p>C Containers Generator is a quick and easy way to generate Containers of any data type in the C
                 language. For user-defined data types some functions that operate on top of it may have to be
                 provided such as comparing functions, copy functions and delete functions.</p>
-            <br>
             <p>These Data Structures are not focused on performance, but rather on visualization.</p>
 
             <br>
@@ -53,6 +53,9 @@
             <hr>
             <p>Every container will be provided in two files. One is the source file <i>container_name.c</i> and
                 another is the header file <i>container_name.h</i>.</p>
+            <p>You can choose to create a container of your own data type. If the type is a <i>struct</i> then it will
+                be a pointer to that <i>struct</i>. This is because swapping values is done much easier then having an
+                array of contiguous <i>structs</i>.</p>
 
             <br>
             <span class="container_subtitle">Features</span>
@@ -96,8 +99,14 @@
 
             <!-- Description -->
             <p id="Array_Description">Description for Array</p>
+
+            <h6>Default header declaration</h6>
+            <pre><code class="c++">typedef struct Array_s
+{
+    T *buffer;      /*!< Buffer */
+    size_t size;    /*!< Buffer size */
+} Array_t, *Array; </code></pre>
             <hr>
-            <br>
 
             <!-- Start of Form -->
             <br>
@@ -111,10 +120,10 @@
                 </div>
                 <div class="input-field col s4">
                     <input value="arr" type="text" id="array_container_prefix">
-                    <label for="array_container_prefix">Function Prefixes</label>
+                    <label for="array_container_prefix">Functions Prefix</label>
                 </div>
                 <div class="input-field col s4 center-align">
-                    <a class="btn orange coming-soon">Preview Header</a>
+                    <a href="#preview_header" class="btn orange modal-trigger" onclick="containerPreviewHeader('array')">Preview Header</a>
                 </div>
             </div>
             <br>
@@ -212,6 +221,7 @@
                             <optgroup label="Integer Data Types" class="integer_select_group"></optgroup>
                             <optgroup label="Floating Point Data Types" class="float_select_group"></optgroup>
                             <optgroup label="Other Data Types" class="other_select_group"></optgroup>
+                            <optgroup label="Other Integer Data Types" class="other_integer_select_group"></optgroup>
                         </select>
                     </div>
 
@@ -244,7 +254,141 @@
             <p id="Circular_Buffer_Description">Description for Circular Buffer</p>
 
             <!-- Form -->
-            <!-- TODO -->
+            <h6>Default header declaration</h6>
+            <pre><code class="c++">typedef struct CircularBuffer_s
+{
+    T *buffer;          /*!< Buffer */
+    size_t size;        /*!< Current Buffer size */
+    size_t capacity;    /*!< Maximum Buffer size */
+    size_t start;       /*!< Where elements are removed */
+    size_t end;         /*!< Where elements are added */
+} CircularBuffer_t, *CircularBuffer;</code></pre>
+            <hr>
+
+            <!-- Start of Form -->
+            <br>
+            <span class="container_subtitle">Container specification</span>
+            <hr>
+            <br>
+            <div class="row">
+                <div class="input-field col s4">
+                    <input value="CircularBuffer" type="text" id="circular_buffer_container_name">
+                    <label for="circular_buffer_container_name">Container Name</label>
+                </div>
+                <div class="input-field col s4">
+                    <input value="cbf" type="text" id="circular_buffer_container_prefix">
+                    <label for="circular_buffer_container_prefix">Functions Prefix</label>
+                </div>
+                <div class="input-field col s4 center-align">
+                    <a href="#preview_header" class="btn orange modal-trigger" onclick="containerPreviewHeader('circular_buffer')">Preview Header</a>
+                </div>
+            </div>
+            <br>
+
+            <span class="container_subtitle">Data type specification</span>
+            <hr>
+            <br>
+            <div class="row">
+
+                <!-- Left panel -->
+                <div class="col s6" style="border-right: 1px solid #dddddd;">
+
+                    <h6>Choose a custom type</h6>
+                    <br>
+                    <div class="input-field">
+                        <input type="text" id="circular_buffer_type_custom">
+                        <label for="circular_buffer_type_custom">Custom type name</label>
+                    </div>
+
+                    <br>
+                    <p>Required functions</p>
+                    <hr>
+                    <div class="row flex-baseline">
+                        <div class="col s12 input-field">
+                            <input type="text" id="circular_buffer_function_delete">
+                            <label for="circular_buffer_function_delete">Delete function</label>
+                        </div>
+                    </div>
+
+                    <br>
+                    <p>Optional functions</p>
+                    <hr>
+                    <div class="row flex-baseline">
+                        <div class="col s4">
+                            <div class="switch">
+                                <label>
+                                    Off
+                                    <input type="checkbox" onclick="formToggle('#circular_buffer_function_comparator')">
+                                    <span class="lever"></span>
+                                    On
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col s6 input-field">
+                            <input type="text" id="circular_buffer_function_comparator" disabled>
+                            <label for="circular_buffer_function_comparator">Comparator function</label>
+                        </div>
+                    </div>
+
+                    <div class="row flex-baseline">
+                        <div class="col s4">
+                            <div class="switch">
+                                <label>
+                                    Off
+                                    <input type="checkbox" onclick="formToggle('#circular_buffer_function_copy')">
+                                    <span class="lever"></span>
+                                    On
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col s6 input-field">
+                            <input type="text" id="circular_buffer_function_copy" disabled>
+                            <label for="circular_buffer_function_copy">Copy function</label>
+                        </div>
+                    </div>
+
+                    <div class="row flex-baseline">
+                        <div class="col s4">
+                            <div class="switch">
+                                <label>
+                                    Off
+                                    <input type="checkbox" onclick="formToggle('#circular_buffer_function_display')">
+                                    <span class="lever"></span>
+                                    On
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col s6 input-field">
+                            <input type="text" id="circular_buffer_function_display" disabled>
+                            <label for="circular_buffer_function_display">Display function</label>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- End of left panel -->
+
+                <!-- Right panel -->
+                <div class="col s6">
+                    <h6>Or go for an already existing type</h6>
+                    <br>
+                    <div class="input-field">
+                        <select id="circular_buffer_primitive_data_type" class="primitive_select" field-id="circular_buffer_primitive_info">
+                            <option value="null" disabled selected>Choose a primitive data type</option>
+                            <optgroup label="Character Data Types" class="character_select_group"></optgroup>
+                            <optgroup label="Integer Data Types" class="integer_select_group"></optgroup>
+                            <optgroup label="Floating Point Data Types" class="float_select_group"></optgroup>
+                            <optgroup label="Other Data Types" class="other_select_group"></optgroup>
+                            <optgroup label="Other Integer Data Types" class="other_integer_select_group"></optgroup>
+                        </select>
+                    </div>
+
+                    <div id="circular_buffer_primitive_info"></div>
+
+                </div>
+                <!-- End of Right panel -->
+
+            </div>
+            <!-- End of form -->
 
             <br>
             <br>
@@ -510,89 +654,97 @@
 
     <!-- Start of Deque Array tab -->
     <div id="Deque_Array" class="col s12">
-        <div class="card">
-            <div class="card-content">
-                <!-- Title -->
-                <span class="card-title">Deque Array</span>
 
-                <!-- Description -->
-                <p id="Deque_Array_Description">Description for Deque Array</p>
+        <div class="card-panel">
+            <!-- Title -->
+            <span class="container_title">Deque Array</span>
 
-                <!-- Form -->
-                <!-- TODO -->
+            <!-- Description -->
+            <p id="Deque_Array_Description">Description for Deque Array</p>
 
-            </div>
-            <div class="card-action">
-                <a href="#" class="coming-soon">Generate</a>
-                <a href="#" class="coming-soon">Preview</a>
-            </div>
+            <!-- Form -->
+            <!-- TODO -->
+
+            <br>
+            <br>
+            <hr>
+            <br>
+            <a href="#" class="coming-soon">Generate</a>
+            <a href="#" class="coming-soon">Preview</a>
         </div>
+
     </div>
     <!-- End of Deque Array tab -->
 
     <!-- Start of Priority Queue tab -->
     <div id="Priority_Queue" class="col s12">
-        <div class="card">
-            <div class="card-content">
-                <!-- Title -->
-                <span class="card-title">Priority Queue</span>
 
-                <!-- Description -->
-                <p id="Priority_Queue_Description">Description for Priority Queue</p>
+        <div class="card-panel">
+            <!-- Title -->
+            <span class="container_title">Priority Queue</span>
 
-                <!-- Form -->
-                <!-- TODO -->
+            <!-- Description -->
+            <p id="Priority_Queue_Description">Description for Priority Queue</p>
 
-            </div>
-            <div class="card-action">
-                <a href="#" class="coming-soon">Generate</a>
-                <a href="#" class="coming-soon">Preview</a>
-            </div>
+            <!-- Form -->
+            <!-- TODO -->
+
+            <br>
+            <br>
+            <hr>
+            <br>
+            <a href="#" class="coming-soon">Generate</a>
+            <a href="#" class="coming-soon">Preview</a>
         </div>
+
     </div>
     <!-- End of Priority Queue tab -->
 
     <!-- Start of Queue tab -->
     <div id="Queue" class="col s12">
-        <div class="card">
-            <div class="card-content">
-                <!-- Title -->
-                <span class="card-title">Queue</span>
 
-                <!-- Description -->
-                <p id="Queue_Description">Description for Queue</p>
+        <div class="card-panel">
+            <!-- Title -->
+            <span class="container_title">Queue</span>
 
-                <!-- Form -->
-                <!-- TODO -->
+            <!-- Description -->
+            <p id="Queue_Description">Description for Queue</p>
 
-            </div>
-            <div class="card-action">
+            <!-- Form -->
+            <!-- TODO -->
+
+                <br>
+                <br>
+                <hr>
+                <br>
                 <a href="#" class="coming-soon">Generate</a>
                 <a href="#" class="coming-soon">Preview</a>
-            </div>
         </div>
+
     </div>
     <!-- End of Queue tab -->
 
     <!-- Start of Queue Array tab -->
     <div id="Queue_Array" class="col s12">
-        <div class="card">
-            <div class="card-content">
-                <!-- Title -->
-                <span class="card-title">Queue Array</span>
 
-                <!-- Description -->
-                <p id="Queue_Array_Description">Description for Queue Array</p>
+        <div class="card-panel">
+            <!-- Title -->
+            <span class="container_title">Queue Array</span>
 
-                <!-- Form -->
-                <!-- TODO -->
+            <!-- Description -->
+            <p id="Queue_Array_Description">Description for Queue Array</p>
 
-            </div>
-            <div class="card-action">
-                <a href="#" class="coming-soon">Generate</a>
-                <a href="#" class="coming-soon">Preview</a>
-            </div>
+            <!-- Form -->
+            <!-- TODO -->
+
+            <br>
+            <br>
+            <hr>
+            <br>
+            <a href="#" class="coming-soon">Generate</a>
+            <a href="#" class="coming-soon">Preview</a>
         </div>
+
     </div>
     <!-- End of Queue Array tab -->
 
@@ -616,45 +768,49 @@
 
     <!-- Start of Stack Array tab -->
     <div id="Stack" class="col s12">
-        <div class="card">
-            <div class="card-content">
-                <!-- Title -->
-                <span class="card-title">Stack</span>
 
-                <!-- Description -->
-                <p id="Stack_Description">Description for Stack</p>
+        <div class="card-panel">
+            <!-- Title -->
+            <span class="container_title">Stack</span>
 
-                <!-- Form -->
-                <!-- TODO -->
+            <!-- Description -->
+            <p id="Stack_Description">Description for Stack</p>
 
-            </div>
-            <div class="card-action">
-                <a href="#" class="coming-soon">Generate</a>
-                <a href="#" class="coming-soon">Preview</a>
-            </div>
+            <!-- Form -->
+            <!-- TODO -->
+
+            <br>
+            <br>
+            <hr>
+            <br>
+            <a href="#" class="coming-soon">Generate</a>
+            <a href="#" class="coming-soon">Preview</a>
         </div>
+
     </div>
     <!-- End of Stack tab -->
 
     <!-- Start of Stack Array tab -->
     <div id="Stack_Array" class="col s12">
-        <div class="card">
-            <div class="card-content">
-                <!-- Title -->
-                <span class="card-title">Stack Array</span>
 
-                <!-- Description -->
-                <p id="Stack_Array_Description">Description for Stack Array</p>
+        <div class="card-panel">
+            <!-- Title -->
+            <span class="container_title">Stack Array</span>
 
-                <!-- Form -->
-                <!-- TODO -->
+            <!-- Description -->
+            <p id="Stack_Array_Description">Description for Stack Array</p>
 
-            </div>
-            <div class="card-action">
-                <a href="#" class="coming-soon">Generate</a>
-                <a href="#" class="coming-soon">Preview</a>
-            </div>
+            <!-- Form -->
+            <!-- TODO -->
+
+            <br>
+            <br>
+            <hr>
+            <br>
+            <a href="#" class="coming-soon">Generate</a>
+            <a href="#" class="coming-soon">Preview</a>
         </div>
+
     </div>
     <!-- End of Stack Array tab -->
 
@@ -821,14 +977,29 @@
 </div>
 <!-- End of Others Tab -->
 
+<!-- Other contents -->
+<div id="preview_header" class="modal">
+    <div class="modal-content">
+        <pre><code id="preview_header_content" class="c++"></code></pre>
+    </div>
+    <div class="modal-footer">
+        <a href="#" class="modal-close btn orange" onclick="containerDeletePreviewHeader('array')">Close</a>
+    </div>
+</div>
+
 <!-- jQuery -->
 <script src="js/jquery-3.3.1.min.js"></script>
 <!-- Materialize CSS scripts -->
 <script src="js/materialize.min.js"></script>
+<!-- Highlight C++ code -->
+<script src="js/highlight.pack.js"></script>
 <!-- User js -->
 <script src="js/main.js"></script>
 <script src="js/texts.js"></script>
 <script src="js/form.js"></script>
+<script src="js/container.js"></script>
+
+<script>hljs.initHighlightingOnLoad();</script>
 
 </body>
 </html>

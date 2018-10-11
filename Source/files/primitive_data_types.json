@@ -114,5 +114,166 @@
         "description": "Used to represent true or false"
       }
     ]
+  },
+  "other_integer": {
+    "id": "other_integer_select_group",
+    "types": [
+      {
+        "name": "intmax_t",
+        "range": "<i>INTMAX_MIN</i> to <i>INTMAX_MAX</i>",
+        "bytes": "Largest possible",
+        "description": "Defined in <i>&ltstdint.h&gt</i> it is the largest possible signed integer."
+      },
+      {
+        "name": "uintmax_t",
+        "range": "0 to <i>UINTMAX_MAX</i>",
+        "bytes": "Largest possible",
+        "description": "Defined in <i>&ltstdint.h&gt</i> it is the largest possible unsigned integer."
+      },
+      {
+        "name": "int8_t",
+        "range": "<i>INT8_MIN</i> to <i>INT8_MAX</i>",
+        "bytes": "1",
+        "description": "Defined in <i>&ltstdint.h&gt</i> guarantees exactly 8 bits."
+      },
+      {
+        "name": "int16_t",
+        "range": "<i>INT16_MIN</i> to <i>INT16_MAX</i>",
+        "bytes": "2",
+        "description": "Defined in <i>&ltstdint.h&gt</i> guarantees exactly 16 bits."
+      },
+      {
+        "name": "int32_t",
+        "range": "<i>INT32_MIN</i> to <i>INT32_MAX</i>",
+        "bytes": "4",
+        "description": "Defined in <i>&ltstdint.h&gt</i> guarantees exactly 32 bits."
+      },
+      {
+        "name": "int64_t",
+        "range": "<i>INT64_MIN</i> to <i>INT64_MAX</i>",
+        "bytes": "8",
+        "description": "Defined in <i>&ltstdint.h&gt</i> guarantees exactly 64 bits."
+      },
+      {
+        "name": "uint8_t",
+        "range": "0 to <i>UINT8_MAX</i>",
+        "bytes": "1",
+        "description": "Defined in <i>&ltstdint.h&gt</i> guarantees exactly 8 bits."
+      },
+      {
+        "name": "uint16_t",
+        "range": "0 to <i>UINT16_MAX</i>",
+        "bytes": "2",
+        "description": "Defined in <i>&ltstdint.h&gt</i> guarantees exactly 16 bits."
+      },
+      {
+        "name": "uint32_t",
+        "range": "0 to <i>UINT32_MAX</i>",
+        "bytes": "4",
+        "description": "Defined in <i>&ltstdint.h&gt</i> guarantees exactly 32 bits."
+      },
+      {
+        "name": "uint64_t",
+        "range": "0 to <i>UINT64_MAX</i>",
+        "bytes": "8",
+        "description": "Defined in <i>&ltstdint.h&gt</i> guarantees exactly 64 bits."
+      },
+      {
+        "name": "int_least8_t",
+        "range": "<i>INT_LEAST8_MIN</i> to <i>INT_LEAST8_MAX</i>",
+        "bytes": "1",
+        "description": "Defined in <i>&ltstdint.h&gt</i> it is at least 8 bits."
+      },
+      {
+        "name": "int_least16_t",
+        "range": "<i>INT_LEAST16_MIN</i> to <i>INT_LEAST16_MAX</i>",
+        "bytes": "2",
+        "description": "Defined in <i>&ltstdint.h&gt</i> it is at least 16 bits."
+      },
+      {
+        "name": "int_least32_t",
+        "range": "<i>INT_LEAST32_MIN</i> to <i>INT_LEAST32_MAX</i>",
+        "bytes": "4",
+        "description": "Defined in <i>&ltstdint.h&gt</i> it is at least 32 bits."
+      },
+      {
+        "name": "int_least64_t",
+        "range": "<i>INT_LEAST64_MIN</i> to <i>INT_LEAST64_MAX</i>",
+        "bytes": "8",
+        "description": "Defined in <i>&ltstdint.h&gt</i> it is at least 64 bits."
+      },
+      {
+        "name": "uint_least8_t",
+        "range": "0 to <i>UINT_LEAST8_MAX</i>",
+        "bytes": "1",
+        "description": "Defined in <i>&ltstdint.h&gt</i> it is at least 8 bits."
+      },
+      {
+        "name": "uint_least16_t",
+        "range": "0 to <i>UINT_LEAST16_MAX</i>",
+        "bytes": "2",
+        "description": "Defined in <i>&ltstdint.h&gt</i> it is at least 16 bits."
+      },
+      {
+        "name": "uint_least32_t",
+        "range": "0 to <i>UINT_LEAST32_MAX</i>",
+        "bytes": "4",
+        "description": "Defined in <i>&ltstdint.h&gt</i> it is at least 32 bits."
+      },
+      {
+        "name": "uint_least64_t",
+        "range": "0 to <i>UINT_LEAST64_MAX</i>",
+        "bytes": "8",
+        "description": "Defined in <i>&ltstdint.h&gt</i> it is at least 64 bits."
+      },
+      {
+        "name": "int_fast8_t",
+        "range": "<i>INT_FAST8_MIN</i> to <i>INT_FAST8_MAX</i>",
+        "bytes": "1",
+        "description": "Defined in <i>&ltstdint.h&gt</i> it is the fastest access integer for current processor with at least 8 bits."
+      },
+      {
+        "name": "int_fast16_t",
+        "range": "<i>INT_FAST16_MIN</i> to <i>INT_FAST16_MAX</i>",
+        "bytes": "2",
+        "description": "Defined in <i>&ltstdint.h&gt</i> it is the fastest access integer for current processor with at least 16 bits."
+      },
+      {
+        "name": "int_fast32_t",
+        "range": "<i>INT_FAST32_MIN</i> to <i>INT_FAST32_MAX</i>",
+        "bytes": "4",
+        "description": "Defined in <i>&ltstdint.h&gt</i> it is the fastest access integer for current processor with at least 32 bits."
+      },
+      {
+        "name": "int_fast64_t",
+        "range": "<i>INT_FAST64_MIN</i> to <i>INT_FAST64_MAX</i>",
+        "bytes": "8",
+        "description": "Defined in <i>&ltstdint.h&gt</i> it is the fastest access integer for current processor with at least 64 bits."
+      },
+      {
+        "name": "uint_fast8_t",
+        "range": "0 to <i>UINT_FAST8_MAX</i>",
+        "bytes": "1",
+        "description": "Defined in <i>&ltstdint.h&gt</i> it is the fastest access unsigned integer for current processor with at least 8 bits."
+      },
+      {
+        "name": "uint_fast16_t",
+        "range": "0 to <i>UINT_FAST16_MAX</i>",
+        "bytes": "2",
+        "description": "Defined in <i>&ltstdint.h&gt</i> it is the fastest access unsigned integer for current processor with at least 16 bits."
+      },
+      {
+        "name": "uint_fast32_t",
+        "range": "0 to <i>UINT_FAST32_MAX</i>",
+        "bytes": "4",
+        "description": "Defined in <i>&ltstdint.h&gt</i> it is the fastest access unsigned integer for current processor with at least 32 bits."
+      },
+      {
+        "name": "uint_fast64_t",
+        "range": "0 to <i>UINT_FAST64_MAX</i>",
+        "bytes": "8",
+        "description": "Defined in <i>&ltstdint.h&gt</i> it is the fastest access unsigned integer for current processor with at least 64 bits."
+      }
+    ]
   }
 }

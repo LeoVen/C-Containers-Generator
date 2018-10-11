@@ -34,7 +34,7 @@ function formPrimitiveInformation() {
             }
         }
 
-        var htmlContent = formMakePrimitiveInformation(object.name, object.range, object.bytes, object.description);
+        var htmlContent = formMakePrimitiveInformation(object);
 
         var htmlId = $(this).attr('field-id');
 
@@ -46,13 +46,13 @@ function formPrimitiveInformation() {
 }
 
 // Makes the info list
-function formMakePrimitiveInformation(name, range, bytes, description) {
+function formMakePrimitiveInformation({name, range, bytes, description}) {
 
     var list = $('<ul>').addClass('collection');
 
-    list.append($('<li>').addClass('collection-item').html('<b>' + name + '</b>'));
-    list.append($('<li>').addClass('collection-item').html('<b> Range: </b>' + range));
-    list.append($('<li>').addClass('collection-item').html('<b> Bytes: </b> ' + bytes));
+    list.append($('<li>').addClass('collection-item').html(`<b>${name}</b>`));
+    list.append($('<li>').addClass('collection-item').html(`<b> Range: </b> ${range}`));
+    list.append($('<li>').addClass('collection-item').html(`<b> Bytes: </b> ${bytes}`));
     list.append($('<li>').addClass('collection-item').html(description));
 
     return list;

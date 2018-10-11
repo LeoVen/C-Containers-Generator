@@ -14,10 +14,10 @@ function textsLoadDescriptions() {
                 $("#" + element.id).html(element.content);
             });
 
-            console.log("Loaded container descriptions successfully");
+            console.log("%c Loaded container descriptions successfully", 'color: green;');
         },
         error: function (data) {
-            console.log("Could not load container descriptions");
+            console.log("%c Could not load container descriptions", 'color: red;');
         }
     });
 }
@@ -36,16 +36,16 @@ function textsLoadPrimitiveSelects() {
 
                     mainGlobalPrimitives.push(this);
 
-                    $('.' + element_0.id).append("<option value='" + this.name + "'>" + this.name + "</option>");
+                    $('.' + element_0.id).append(`<option value='${this.name}'>${this.name}</option>`);
                 });
             });
 
             $('select').material_select();
 
-            console.log("Loaded primitive options successfully");
+            console.log("%c Loaded primitive options successfully", 'color: green;');
         },
         error: function (data) {
-            console.log("Could not load primitive options");
+            console.log("%c Could not load primitive options", 'color: red;');
         }
     });
 }

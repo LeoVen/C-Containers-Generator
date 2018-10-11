@@ -1,0 +1,19 @@
+#ifndef CORE_H
+#define CORE_H
+
+typedef enum Status
+{
+    DS_OK                        =  0,
+    DS_ERR_INVALID_POSITION      =  1,
+    DS_ERR_INVALID_OPERATION     =  2,
+    DS_ERR_INVALID_SIZE          =  3,
+    DS_ERR_NOT_FOUND             =  4,
+    DS_ERR_ALLOC                 =  5,
+    DS_ERR_UNEXPECTED_RESULT     =  6,
+    DS_ERR_ITER                  =  7,
+    DS_ERR_NULL_POINTER          =  8,
+    DS_ERR_FULL                  =  9,
+    DS_ERR_INVALID_ARGUMENT      = 10
+} Status;
+
+#endif // CORE_H

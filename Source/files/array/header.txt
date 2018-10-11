@@ -1,0 +1,30 @@
+#ifndef ::FILE_NAME::_H
+#define ::FILE_NAME::_H
+
+::CORE_DEFINITION::
+
+typedef struct ::CONTAINER_NAME::_s
+{
+    ::DATA_TYPE:: *buffer;
+    size_t size;
+} ::CONTAINER_NAME::_t, *::CONTAINER_NAME::;
+
+Status ::FUNCTION_PREFIX::_init(Array *arr, size_t size);
+
+Status ::FUNCTION_PREFIX::_insert(Array arr, size_t index, ::DATA_TYPE:: value);
+
+Status ::FUNCTION_PREFIX::_display(Array arr);
+
+Status ::FUNCTION_PREFIX::_display_raw(Array arr);
+
+Status ::FUNCTION_PREFIX::_delete(Array *arr);
+
+Status ::FUNCTION_PREFIX::_erase(Array arr);
+
+Status ::FUNCTION_PREFIX::_copy(Array arr, Array *result);
+
+Status ::FUNCTION_PREFIX::_switch(Array arr, size_t pos1, size_t pos2);
+
+Status ::FUNCTION_PREFIX::_reverse(Array arr);
+
+#endif //::FILE_NAME::_H

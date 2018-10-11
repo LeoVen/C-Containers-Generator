@@ -1,6 +1,7 @@
 .tabs-flex {
     display: flex;
     justify-content: space-around;
+    overflow-x: hidden;
 }
 
 .tabs-flex li {
