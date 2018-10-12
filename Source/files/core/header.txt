@@ -16,4 +16,4 @@ typedef enum Status
     DS_ERR_INVALID_ARGUMENT      = 10
 } Status;
 
-#endif // CORE_H
+#endif //CORE_H

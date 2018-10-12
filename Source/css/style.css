@@ -39,3 +39,22 @@ hr {
     display: flex;
     align-items: baseline;
 }
+
+#preview_screen {
+    width: 80vw;
+}
+
+.panel_columns {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.panel_columns div {
+    flex: 1;
+}
+
+.inactive_panel {
+    background-color: #f6f6f6;
+    pointer-events: none;
+}

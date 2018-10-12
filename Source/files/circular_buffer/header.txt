@@ -1,39 +1,39 @@
 #ifndef ::FILE_NAME::_H
 #define ::FILE_NAME::_H
 
-::CORE_DEFINITION::
+::CORE_HEADER::
 
-typedef struct ::CONTAINER_NAME::_s
+::CONTAINER_TYPEDEF_KEYWORD::struct ::CONTAINER_NAME::
 {
-    ::DATA_TYPE:: *buffer;
+    ::DATA_TYPE::*buffer;
     size_t size;
     size_t capacity;
     size_t start;
     size_t end;
-} ::CONTAINER_NAME::_t, *::CONTAINER_NAME::;
+}::CONTAINER_TYPEDEF::;
 
-Status ::FUNCTION_PREFIX::_init(::CONTAINER_NAME:: *cbf, size_t length);
+Status ::FUNCTION_PREFIX::_init(::CONTAINER_FUNCTION_NAME::*cbf, size_t length);
 
-Status ::FUNCTION_PREFIX::_insert(::CONTAINER_NAME:: cbf, ::DATA_TYPE:: value);
+Status ::FUNCTION_PREFIX::_insert(::CONTAINER_FUNCTION_NAME::cbf, ::DATA_TYPE::value);
 
-Status ::FUNCTION_PREFIX::_remove(::CONTAINER_NAME:: cbf, ::DATA_TYPE:: *value);
+Status ::FUNCTION_PREFIX::_remove(::CONTAINER_FUNCTION_NAME::cbf, ::DATA_TYPE::*value);
 
-Status ::FUNCTION_PREFIX::_display(::CONTAINER_NAME:: cbf);
+Status ::FUNCTION_PREFIX::_display(::CONTAINER_FUNCTION_NAME::cbf);
 
-Status ::FUNCTION_PREFIX::_display_array(::CONTAINER_NAME:: cbf);
+Status ::FUNCTION_PREFIX::_display_array(::CONTAINER_FUNCTION_NAME::cbf);
 
-Status ::FUNCTION_PREFIX::_display_raw(::CONTAINER_NAME:: cbf);
+Status ::FUNCTION_PREFIX::_display_raw(::CONTAINER_FUNCTION_NAME::cbf);
 
-Status ::FUNCTION_PREFIX::_delete(::CONTAINER_NAME:: *cbf);
+Status ::FUNCTION_PREFIX::_delete(::CONTAINER_FUNCTION_NAME::*cbf);
 
-Status ::FUNCTION_PREFIX::_erase(::CONTAINER_NAME:: *cbf);
+Status ::FUNCTION_PREFIX::_erase(::CONTAINER_FUNCTION_NAME::*cbf);
 
-size_t ::FUNCTION_PREFIX::_size(::CONTAINER_NAME:: cbf);
+size_t ::FUNCTION_PREFIX::_size(::CONTAINER_FUNCTION_NAME::cbf);
 
-bool ::FUNCTION_PREFIX::_empty(::CONTAINER_NAME:: cbf);
+bool ::FUNCTION_PREFIX::_empty(::CONTAINER_FUNCTION_NAME::cbf);
 
-bool ::FUNCTION_PREFIX::_full(::CONTAINER_NAME:: cbf);
+bool ::FUNCTION_PREFIX::_full(::CONTAINER_FUNCTION_NAME::cbf);
 
-Status ::FUNCTION_PREFIX::_copy(::CONTAINER_NAME:: cbf, ::CONTAINER_NAME:: *result);
+Status ::FUNCTION_PREFIX::_copy(::CONTAINER_FUNCTION_NAME::cbf, ::CONTAINER_FUNCTION_NAME::*result);
 
 #endif //::FILE_NAME::_H

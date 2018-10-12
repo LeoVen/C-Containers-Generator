@@ -16,6 +16,20 @@ function formToggle(element) {
     }
 }
 
+// Activates left panel
+function formActivateCustom(container) {
+
+    $(`#${container}_panel_left`).removeClass('inactive_panel');
+    $(`#${container}_panel_right`).addClass('inactive_panel');
+}
+
+// Activates right panel
+function formActivatePrimitive(container) {
+
+    $(`#${container}_panel_right`).removeClass('inactive_panel');
+    $(`#${container}_panel_left`).addClass('inactive_panel');
+}
+
 // Adds a quick information about selected primitive data type
 function formPrimitiveInformation() {
 

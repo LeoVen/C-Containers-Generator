@@ -1,25 +1,79 @@
 // Functions related to the generation of container files
 
 // Generates a header for preview
-function containerPreviewHeader(directory) {
+function containerPreviewHeader(container) {
 
     $("#preview_header_content").html("");
 
     $.ajax({
-        url: `files/${directory}/header.txt`,
+        url: `files/${container}/header.txt`,
         dataType: 'text',
         success: function (data) {
 
-            var containerName= $(`#${directory}_container_name`).val();
-            var containerPrefix = $(`#${directory}_container_prefix`).val();
+            const containerName = $(`#${container}_container_name`).val();
+            const containerPrefix = $(`#${container}_container_prefix`).val();
+
+            let containerFunctionName;
+
+            let containerType = 'T ';
+
+            const includeCoreHeader = $(`#${container}_include_core`).is(":checked");
+            let coreHeader;
+
+            const typedef = $(`#${container}_typedef`).is(":checked");
+
+            const fileName = $(`#${container}_header_file_name`).val();
+            let headerName;
+
+            if (fileName !== "") {
+                headerName = fileName.toUpperCase();
+            } else {
+                headerName = containerName.toUpperCase();
+            }
+
+            if (includeCoreHeader) {
+                coreHeader = mainGlobalCoreHeader;
+            } else {
+                coreHeader = '#include "Core.h"';
+            }
+
+            const isPrimitive = $(`#${container}_primitive`).is(":checked");
+            const isCustom = $(`#${container}_custom`).is(":checked");
+
+            if (isPrimitive) {
+
+                containerType = $(`#${container}_primitive_data_type`).val() + ' ';
+            } else if (isCustom) {
+
+                let customValue = $(`#${container}_custom_data_type`).val().trim();
+
+                if (customValue !== "") {
+
+                    containerType = customValue + ' *';
+                }
+            }
+
+            if (typedef) {
+                data = data.replace(/::CONTAINER_TYPEDEF::/, ' ::CONTAINER_NAME::_t, *::CONTAINER_NAME::')
+                    .replace(/::CONTAINER_TYPEDEF_KEYWORD::/, 'typedef ')
+                    .replace(/::CONTAINER_NAME::/, '::CONTAINER_NAME::_s');
+
+                containerFunctionName = containerName + ' ';
+            } else {
+                data = data.replace(/::CONTAINER_TYPEDEF::/, '')
+                    .replace(/::CONTAINER_TYPEDEF_KEYWORD::/, '');
+
+                containerFunctionName = 'struct ' + containerName + ' *';
+            }
 
             data = data.replace(/::CONTAINER_NAME::/g, containerName)
-                .replace(/::FILE_NAME::/g, containerName.toUpperCase())
-                .replace(/::CORE_DEFINITION::/g, mainGlobalCoreHeader)
+                .replace(/::CONTAINER_FUNCTION_NAME::/g, containerFunctionName)
                 .replace(/::FUNCTION_PREFIX::/g, containerPrefix)
-                .replace(/::DATA_TYPE::/g, 'T');
+                .replace(/::CORE_HEADER::/g, coreHeader)
+                .replace(/::FILE_NAME::/g, headerName)
+                .replace(/::DATA_TYPE::/g, containerType);
 
-            $('#preview_header_content').html(data);
+            $('#preview_screen_content').html(data);
 
             $('pre code').each(function(i, block) {
                 hljs.highlightBlock(block);
@@ -36,6 +90,7 @@ function containerPreviewHeader(directory) {
 // Erases modal preview content
 function containerDeletePreviewHeader() {
 
+    event.preventDefault();
     $("#preview_header_content").html("");
 }
 

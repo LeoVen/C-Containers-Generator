@@ -1,30 +1,30 @@
 #ifndef ::FILE_NAME::_H
 #define ::FILE_NAME::_H
 
-::CORE_DEFINITION::
+::CORE_HEADER::
 
-typedef struct ::CONTAINER_NAME::_s
+::CONTAINER_TYPEDEF_KEYWORD::struct ::CONTAINER_NAME::
 {
-    ::DATA_TYPE:: *buffer;
+    ::DATA_TYPE::*buffer;
     size_t size;
-} ::CONTAINER_NAME::_t, *::CONTAINER_NAME::;
+}::CONTAINER_TYPEDEF::;
 
-Status ::FUNCTION_PREFIX::_init(Array *arr, size_t size);
+Status ::FUNCTION_PREFIX::_init(::CONTAINER_FUNCTION_NAME::*arr, size_t size);
 
-Status ::FUNCTION_PREFIX::_insert(Array arr, size_t index, ::DATA_TYPE:: value);
+Status ::FUNCTION_PREFIX::_insert(::CONTAINER_FUNCTION_NAME::arr, size_t index, ::DATA_TYPE::value);
 
-Status ::FUNCTION_PREFIX::_display(Array arr);
+Status ::FUNCTION_PREFIX::_display(::CONTAINER_FUNCTION_NAME::arr);
 
-Status ::FUNCTION_PREFIX::_display_raw(Array arr);
+Status ::FUNCTION_PREFIX::_display_raw(::CONTAINER_FUNCTION_NAME::arr);
 
-Status ::FUNCTION_PREFIX::_delete(Array *arr);
+Status ::FUNCTION_PREFIX::_delete(::CONTAINER_FUNCTION_NAME::*arr);
 
-Status ::FUNCTION_PREFIX::_erase(Array arr);
+Status ::FUNCTION_PREFIX::_erase(::CONTAINER_FUNCTION_NAME::arr);
 
-Status ::FUNCTION_PREFIX::_copy(Array arr, Array *result);
+Status ::FUNCTION_PREFIX::_copy(::CONTAINER_FUNCTION_NAME::arr, ::CONTAINER_FUNCTION_NAME::*result);
 
-Status ::FUNCTION_PREFIX::_switch(Array arr, size_t pos1, size_t pos2);
+Status ::FUNCTION_PREFIX::_switch(::CONTAINER_FUNCTION_NAME::arr, size_t pos1, size_t pos2);
 
-Status ::FUNCTION_PREFIX::_reverse(Array arr);
+Status ::FUNCTION_PREFIX::_reverse(::CONTAINER_FUNCTION_NAME::arr);
 
 #endif //::FILE_NAME::_H

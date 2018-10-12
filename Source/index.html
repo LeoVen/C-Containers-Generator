@@ -110,6 +110,25 @@
 
             <!-- Start of Form -->
             <br>
+            <span class="container_subtitle">File specification</span>
+            <div class="row">
+                <div class="input-field col s4">
+                    <input value="ArrayAPI" type="text" id="array_header_file_name">
+                    <label for="array_header_file_name">Header File Name</label>
+                </div>
+                <div class="input-field col s4">
+                    <input value="ArrayAPI" type="text" id="array_source_file_name">
+                    <label for="array_source_file_name">Source File Name</label>
+                </div>
+                <div class="col s4">
+                    <p>
+                        <input type="checkbox" id="array_include_core" />
+                        <label for="array_include_core">Include Core Header</label>
+                    </p>
+                </div>
+            </div>
+
+            <br>
             <span class="container_subtitle">Container specification</span>
             <hr>
             <br>
@@ -122,8 +141,11 @@
                     <input value="arr" type="text" id="array_container_prefix">
                     <label for="array_container_prefix">Functions Prefix</label>
                 </div>
-                <div class="input-field col s4 center-align">
-                    <a href="#preview_header" class="btn orange modal-trigger" onclick="containerPreviewHeader('array')">Preview Header</a>
+                <div class="col s4">
+                    <p>
+                        <input type="checkbox" id="array_typedef" />
+                        <label for="array_typedef">Typedef</label>
+                    </p>
                 </div>
             </div>
             <br>
@@ -133,102 +155,119 @@
             <br>
             <div class="row">
 
-                <!-- Left panel -->
-                <div class="col s6" style="border-right: 1px solid #dddddd;">
-
-                    <h6>Choose a custom type</h6>
-                    <br>
-                    <div class="input-field">
-                        <input type="text" id="array_type_custom">
-                        <label for="array_type_custom">Custom type name</label>
-                    </div>
-
-                    <br>
-                    <p>Required functions</p>
-                    <hr>
-                    <div class="row flex-baseline">
-                        <div class="col s12 input-field">
-                            <input type="text" id="array_function_delete">
-                            <label for="array_function_delete">Delete function</label>
-                        </div>
-                    </div>
-
-                    <br>
-                    <p>Optional functions</p>
-                    <hr>
-                    <div class="row flex-baseline">
-                        <div class="col s4">
-                            <div class="switch">
-                                <label>
-                                    Off
-                                    <input type="checkbox" onclick="formToggle('#array_function_comparator')">
-                                    <span class="lever"></span>
-                                    On
-                                </label>
-                            </div>
-                        </div>
-                        <div class="col s6 input-field">
-                            <input type="text" id="array_function_comparator" disabled>
-                            <label for="array_function_comparator">Comparator function</label>
-                        </div>
-                    </div>
-
-                    <div class="row flex-baseline">
-                        <div class="col s4">
-                            <div class="switch">
-                                <label>
-                                    Off
-                                    <input type="checkbox" onclick="formToggle('#array_function_copy')">
-                                    <span class="lever"></span>
-                                    On
-                                </label>
-                            </div>
-                        </div>
-                        <div class="col s6 input-field">
-                            <input type="text" id="array_function_copy" disabled>
-                            <label for="array_function_copy">Copy function</label>
-                        </div>
-                    </div>
-
-                    <div class="row flex-baseline">
-                        <div class="col s4">
-                            <div class="switch">
-                                <label>
-                                    Off
-                                    <input type="checkbox" onclick="formToggle('#array_function_display')">
-                                    <span class="lever"></span>
-                                    On
-                                </label>
-                            </div>
-                        </div>
-                        <div class="col s6 input-field">
-                            <input type="text" id="array_function_display" disabled>
-                            <label for="array_function_display">Display function</label>
-                        </div>
-                    </div>
-
-                </div>
-                <!-- End of left panel -->
-
-                <!-- Right panel -->
+                <!-- Selects data type -->
                 <div class="col s6">
-                    <h6>Or go for an already existing type</h6>
-                    <br>
-                    <div class="input-field">
-                        <select id="array_primitive_data_type" class="primitive_select" field-id="array_primitive_info">
-                            <option value="null" disabled selected>Choose a primitive data type</option>
-                            <optgroup label="Character Data Types" class="character_select_group"></optgroup>
-                            <optgroup label="Integer Data Types" class="integer_select_group"></optgroup>
-                            <optgroup label="Floating Point Data Types" class="float_select_group"></optgroup>
-                            <optgroup label="Other Data Types" class="other_select_group"></optgroup>
-                            <optgroup label="Other Integer Data Types" class="other_integer_select_group"></optgroup>
-                        </select>
-                    </div>
-
-                    <div id="array_primitive_info"></div>
+                    <p>
+                        <input name="array_group" type="radio" id="array_custom" onchange="formActivateCustom('array')"/>
+                        <label for="array_custom">Custom data type</label>
+                    </p>
                 </div>
-                <!-- End of Right panel -->
+                <div class="col s6">
+                    <p>
+                        <input name="array_group" type="radio" id="array_primitive" onchange="formActivatePrimitive('array')"/>
+                        <label for="array_primitive">Primitive data type</label>
+                    </p>
+                </div>
 
+                <!-- Form panels -->
+                <div class="panel_columns">
+                    <!-- Left panel -->
+                    <div class="col s6 inactive_panel" id="array_panel_left">
+
+                        <h6>Choose a custom type</h6>
+                        <br>
+                        <div class="input-field">
+                            <input type="text" id="array_custom_data_type">
+                            <label for="array_custom_data_type">Custom type name</label>
+                        </div>
+
+                        <br>
+                        <p>Required functions</p>
+                        <hr>
+                        <div class="row flex-baseline">
+                            <div class="col s12 input-field">
+                                <input type="text" id="array_function_delete">
+                                <label for="array_function_delete">Delete function</label>
+                            </div>
+                        </div>
+
+                        <br>
+                        <p>Optional functions</p>
+                        <hr>
+                        <div class="row flex-baseline">
+                            <div class="col s4">
+                                <div class="switch">
+                                    <label>
+                                        Off
+                                        <input type="checkbox" onclick="formToggle('#array_function_comparator')">
+                                        <span class="lever"></span>
+                                        On
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col s6 input-field">
+                                <input type="text" id="array_function_comparator" disabled>
+                                <label for="array_function_comparator">Comparator function</label>
+                            </div>
+                        </div>
+
+                        <div class="row flex-baseline">
+                            <div class="col s4">
+                                <div class="switch">
+                                    <label>
+                                        Off
+                                        <input type="checkbox" onclick="formToggle('#array_function_copy')">
+                                        <span class="lever"></span>
+                                        On
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col s6 input-field">
+                                <input type="text" id="array_function_copy" disabled>
+                                <label for="array_function_copy">Copy function</label>
+                            </div>
+                        </div>
+
+                        <div class="row flex-baseline">
+                            <div class="col s4">
+                                <div class="switch">
+                                    <label>
+                                        Off
+                                        <input type="checkbox" onclick="formToggle('#array_function_display')">
+                                        <span class="lever"></span>
+                                        On
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col s6 input-field">
+                                <input type="text" id="array_function_display" disabled>
+                                <label for="array_function_display">Display function</label>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- End of left panel -->
+
+                    <!-- Right panel -->
+                    <div class="col s6 inactive_panel" id="array_panel_right">
+                        <h6>Or go for an already existing type</h6>
+                        <br>
+                        <div class="input-field">
+                            <select id="array_primitive_data_type" class="primitive_select" field-id="array_primitive_info">
+                                <option value="null" disabled selected>Choose a primitive data type</option>
+                                <optgroup label="Character Data Types" class="character_select_group"></optgroup>
+                                <optgroup label="Integer Data Types" class="integer_select_group"></optgroup>
+                                <optgroup label="Floating Point Data Types" class="float_select_group"></optgroup>
+                                <optgroup label="Other Data Types" class="other_select_group"></optgroup>
+                                <optgroup label="Other Integer Data Types" class="other_integer_select_group"></optgroup>
+                            </select>
+                        </div>
+
+                        <div id="array_primitive_info"></div>
+                    </div>
+                    <!-- End of Right panel -->
+                </div>
+                <!-- End of form panels -->
             </div>
             <!-- End of form -->
 
@@ -237,7 +276,8 @@
             <hr>
             <br>
             <a href="#" class="coming-soon">Generate</a>
-            <a href="#" class="coming-soon">Preview</a>
+            <a href="#" class="coming-soon">Preview Source</a>
+            <a href="#preview_screen" class="btn orange modal-trigger" onclick="containerPreviewHeader('array')">Preview Header</a>
         </div>
 
     </div>
@@ -267,6 +307,25 @@
 
             <!-- Start of Form -->
             <br>
+            <span class="container_subtitle">File specification</span>
+            <div class="row">
+                <div class="input-field col s4">
+                    <input value="CircularBufferAPI" type="text" id="circular_buffer_header_file_name">
+                    <label for="circular_buffer_header_file_name">Header File Name</label>
+                </div>
+                <div class="input-field col s4">
+                    <input value="CircularBufferAPI" type="text" id="circular_buffer_source_file_name">
+                    <label for="circular_buffer_source_file_name">Source File Name</label>
+                </div>
+                <div class="col s4">
+                    <p>
+                        <input type="checkbox" id="circular_buffer_include_core" />
+                        <label for="circular_buffer_include_core">Include Core Header</label>
+                    </p>
+                </div>
+            </div>
+
+            <br>
             <span class="container_subtitle">Container specification</span>
             <hr>
             <br>
@@ -279,8 +338,11 @@
                     <input value="cbf" type="text" id="circular_buffer_container_prefix">
                     <label for="circular_buffer_container_prefix">Functions Prefix</label>
                 </div>
-                <div class="input-field col s4 center-align">
-                    <a href="#preview_header" class="btn orange modal-trigger" onclick="containerPreviewHeader('circular_buffer')">Preview Header</a>
+                <div class="col s4">
+                    <p>
+                        <input type="checkbox" id="circular_buffer_typedef" />
+                        <label for="circular_buffer_typedef">Typedef</label>
+                    </p>
                 </div>
             </div>
             <br>
@@ -290,103 +352,120 @@
             <br>
             <div class="row">
 
-                <!-- Left panel -->
-                <div class="col s6" style="border-right: 1px solid #dddddd;">
-
-                    <h6>Choose a custom type</h6>
-                    <br>
-                    <div class="input-field">
-                        <input type="text" id="circular_buffer_type_custom">
-                        <label for="circular_buffer_type_custom">Custom type name</label>
-                    </div>
-
-                    <br>
-                    <p>Required functions</p>
-                    <hr>
-                    <div class="row flex-baseline">
-                        <div class="col s12 input-field">
-                            <input type="text" id="circular_buffer_function_delete">
-                            <label for="circular_buffer_function_delete">Delete function</label>
-                        </div>
-                    </div>
-
-                    <br>
-                    <p>Optional functions</p>
-                    <hr>
-                    <div class="row flex-baseline">
-                        <div class="col s4">
-                            <div class="switch">
-                                <label>
-                                    Off
-                                    <input type="checkbox" onclick="formToggle('#circular_buffer_function_comparator')">
-                                    <span class="lever"></span>
-                                    On
-                                </label>
-                            </div>
-                        </div>
-                        <div class="col s6 input-field">
-                            <input type="text" id="circular_buffer_function_comparator" disabled>
-                            <label for="circular_buffer_function_comparator">Comparator function</label>
-                        </div>
-                    </div>
-
-                    <div class="row flex-baseline">
-                        <div class="col s4">
-                            <div class="switch">
-                                <label>
-                                    Off
-                                    <input type="checkbox" onclick="formToggle('#circular_buffer_function_copy')">
-                                    <span class="lever"></span>
-                                    On
-                                </label>
-                            </div>
-                        </div>
-                        <div class="col s6 input-field">
-                            <input type="text" id="circular_buffer_function_copy" disabled>
-                            <label for="circular_buffer_function_copy">Copy function</label>
-                        </div>
-                    </div>
-
-                    <div class="row flex-baseline">
-                        <div class="col s4">
-                            <div class="switch">
-                                <label>
-                                    Off
-                                    <input type="checkbox" onclick="formToggle('#circular_buffer_function_display')">
-                                    <span class="lever"></span>
-                                    On
-                                </label>
-                            </div>
-                        </div>
-                        <div class="col s6 input-field">
-                            <input type="text" id="circular_buffer_function_display" disabled>
-                            <label for="circular_buffer_function_display">Display function</label>
-                        </div>
-                    </div>
-
-                </div>
-                <!-- End of left panel -->
-
-                <!-- Right panel -->
+                <!-- Selects data type -->
                 <div class="col s6">
-                    <h6>Or go for an already existing type</h6>
-                    <br>
-                    <div class="input-field">
-                        <select id="circular_buffer_primitive_data_type" class="primitive_select" field-id="circular_buffer_primitive_info">
-                            <option value="null" disabled selected>Choose a primitive data type</option>
-                            <optgroup label="Character Data Types" class="character_select_group"></optgroup>
-                            <optgroup label="Integer Data Types" class="integer_select_group"></optgroup>
-                            <optgroup label="Floating Point Data Types" class="float_select_group"></optgroup>
-                            <optgroup label="Other Data Types" class="other_select_group"></optgroup>
-                            <optgroup label="Other Integer Data Types" class="other_integer_select_group"></optgroup>
-                        </select>
-                    </div>
-
-                    <div id="circular_buffer_primitive_info"></div>
-
+                    <p>
+                        <input name="circular_buffer_group" type="radio" id="circular_buffer_custom" onchange="formActivateCustom('circular_buffer')"/>
+                        <label for="circular_buffer_custom">Custom data type</label>
+                    </p>
                 </div>
-                <!-- End of Right panel -->
+                <div class="col s6">
+                    <p>
+                        <input name="circular_buffer_group" type="radio" id="circular_buffer_primitive" onchange="formActivatePrimitive('circular_buffer')"/>
+                        <label for="circular_buffer_primitive">Primitive data type</label>
+                    </p>
+                </div>
 
+                <!-- Form panels -->
+                <div class="panel_columns">
+                    <!-- Left panel -->
+                    <div class="col s6 inactive_panel" id="circular_buffer_panel_left">
+
+                        <h6>Choose a custom type</h6>
+                        <br>
+                        <div class="input-field">
+                            <input type="text" id="circular_buffer_custom_data_type">
+                            <label for="circular_buffer_custom_data_type">Custom type name</label>
+                        </div>
+
+                        <br>
+                        <p>Required functions</p>
+                        <hr>
+                        <div class="row flex-baseline">
+                            <div class="col s12 input-field">
+                                <input type="text" id="circular_buffer_function_delete">
+                                <label for="circular_buffer_function_delete">Delete function</label>
+                            </div>
+                        </div>
+
+                        <br>
+                        <p>Optional functions</p>
+                        <hr>
+                        <div class="row flex-baseline">
+                            <div class="col s4">
+                                <div class="switch">
+                                    <label>
+                                        Off
+                                        <input type="checkbox" onclick="formToggle('#circular_buffer_function_comparator')">
+                                        <span class="lever"></span>
+                                        On
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col s6 input-field">
+                                <input type="text" id="circular_buffer_function_comparator" disabled>
+                                <label for="circular_buffer_function_comparator">Comparator function</label>
+                            </div>
+                        </div>
+
+                        <div class="row flex-baseline">
+                            <div class="col s4">
+                                <div class="switch">
+                                    <label>
+                                        Off
+                                        <input type="checkbox" onclick="formToggle('#circular_buffer_function_copy')">
+                                        <span class="lever"></span>
+                                        On
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col s6 input-field">
+                                <input type="text" id="circular_buffer_function_copy" disabled>
+                                <label for="circular_buffer_function_copy">Copy function</label>
+                            </div>
+                        </div>
+
+                        <div class="row flex-baseline">
+                            <div class="col s4">
+                                <div class="switch">
+                                    <label>
+                                        Off
+                                        <input type="checkbox" onclick="formToggle('#circular_buffer_function_display')">
+                                        <span class="lever"></span>
+                                        On
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col s6 input-field">
+                                <input type="text" id="circular_buffer_function_display" disabled>
+                                <label for="circular_buffer_function_display">Display function</label>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- End of left panel -->
+
+                    <!-- Right panel -->
+                    <div class="col s6 inactive_panel" id="circular_buffer_panel_right">
+                        <h6>Or go for an already existing type</h6>
+                        <br>
+                        <div class="input-field">
+                            <select id="circular_buffer_primitive_data_type" class="primitive_select" field-id="circular_buffer_primitive_info">
+                                <option value="null" disabled selected>Choose a primitive data type</option>
+                                <optgroup label="Character Data Types" class="character_select_group"></optgroup>
+                                <optgroup label="Integer Data Types" class="integer_select_group"></optgroup>
+                                <optgroup label="Floating Point Data Types" class="float_select_group"></optgroup>
+                                <optgroup label="Other Data Types" class="other_select_group"></optgroup>
+                                <optgroup label="Other Integer Data Types" class="other_integer_select_group"></optgroup>
+                            </select>
+                        </div>
+
+                        <div id="circular_buffer_primitive_info"></div>
+
+                    </div>
+                    <!-- End of Right panel -->
+                </div>
+                <!-- End of form panels -->
             </div>
             <!-- End of form -->
 
@@ -395,7 +474,8 @@
             <hr>
             <br>
             <a href="#" class="coming-soon">Generate</a>
-            <a href="#" class="coming-soon">Preview</a>
+            <a href="#" class="coming-soon">Preview Source</a>
+            <a href="#preview_screen" class="btn orange modal-trigger" onclick="containerPreviewHeader('circular_buffer')">Preview Header</a>
         </div>
 
     </div>
@@ -419,7 +499,8 @@
             <hr>
             <br>
             <a href="#" class="coming-soon">Generate</a>
-            <a href="#" class="coming-soon">Preview</a>
+            <a href="#" class="coming-soon">Preview Source</a>
+            <a href="#" class="coming-soon">Preview Header</a>
         </div>
 
     </div>
@@ -461,7 +542,8 @@
             <hr>
             <br>
             <a href="#" class="coming-soon">Generate</a>
-            <a href="#" class="coming-soon">Preview</a>
+            <a href="#" class="coming-soon">Preview Source</a>
+            <a href="#" class="coming-soon">Preview Header</a>
         </div>
 
     </div>
@@ -485,7 +567,8 @@
             <hr>
             <br>
             <a href="#" class="coming-soon">Generate</a>
-            <a href="#" class="coming-soon">Preview</a>
+            <a href="#" class="coming-soon">Preview Source</a>
+            <a href="#" class="coming-soon">Preview Header</a>
         </div>
 
     </div>
@@ -529,7 +612,8 @@
             <hr>
             <br>
             <a href="#" class="coming-soon">Generate</a>
-            <a href="#" class="coming-soon">Preview</a>
+            <a href="#" class="coming-soon">Preview Source</a>
+            <a href="#" class="coming-soon">Preview Header</a>
         </div>
 
     </div>
@@ -553,7 +637,8 @@
             <hr>
             <br>
             <a href="#" class="coming-soon">Generate</a>
-            <a href="#" class="coming-soon">Preview</a>
+            <a href="#" class="coming-soon">Preview Source</a>
+            <a href="#" class="coming-soon">Preview Header</a>
         </div>
 
     </div>
@@ -577,7 +662,8 @@
             <hr>
             <br>
             <a href="#" class="coming-soon">Generate</a>
-            <a href="#" class="coming-soon">Preview</a>
+            <a href="#" class="coming-soon">Preview Source</a>
+            <a href="#" class="coming-soon">Preview Header</a>
         </div>
 
     </div>
@@ -601,7 +687,8 @@
             <hr>
             <br>
             <a href="#" class="coming-soon">Generate</a>
-            <a href="#" class="coming-soon">Preview</a>
+            <a href="#" class="coming-soon">Preview Source</a>
+            <a href="#" class="coming-soon">Preview Header</a>
         </div>
 
     </div>
@@ -646,7 +733,8 @@
             <hr>
             <br>
             <a href="#" class="coming-soon">Generate</a>
-            <a href="#" class="coming-soon">Preview</a>
+            <a href="#" class="coming-soon">Preview Source</a>
+            <a href="#" class="coming-soon">Preview Header</a>
         </div>
 
     </div>
@@ -670,7 +758,8 @@
             <hr>
             <br>
             <a href="#" class="coming-soon">Generate</a>
-            <a href="#" class="coming-soon">Preview</a>
+            <a href="#" class="coming-soon">Preview Source</a>
+            <a href="#" class="coming-soon">Preview Header</a>
         </div>
 
     </div>
@@ -694,7 +783,8 @@
             <hr>
             <br>
             <a href="#" class="coming-soon">Generate</a>
-            <a href="#" class="coming-soon">Preview</a>
+            <a href="#" class="coming-soon">Preview Source</a>
+            <a href="#" class="coming-soon">Preview Header</a>
         </div>
 
     </div>
@@ -718,7 +808,8 @@
                 <hr>
                 <br>
                 <a href="#" class="coming-soon">Generate</a>
-                <a href="#" class="coming-soon">Preview</a>
+                <a href="#" class="coming-soon">Preview Source</a>
+                <a href="#" class="coming-soon">Preview Header</a>
         </div>
 
     </div>
@@ -742,7 +833,8 @@
             <hr>
             <br>
             <a href="#" class="coming-soon">Generate</a>
-            <a href="#" class="coming-soon">Preview</a>
+            <a href="#" class="coming-soon">Preview Source</a>
+            <a href="#" class="coming-soon">Preview Header</a>
         </div>
 
     </div>
@@ -784,7 +876,8 @@
             <hr>
             <br>
             <a href="#" class="coming-soon">Generate</a>
-            <a href="#" class="coming-soon">Preview</a>
+            <a href="#" class="coming-soon">Preview Source</a>
+            <a href="#" class="coming-soon">Preview Header</a>
         </div>
 
     </div>
@@ -808,7 +901,8 @@
             <hr>
             <br>
             <a href="#" class="coming-soon">Generate</a>
-            <a href="#" class="coming-soon">Preview</a>
+            <a href="#" class="coming-soon">Preview Source</a>
+            <a href="#" class="coming-soon">Preview Header</a>
         </div>
 
     </div>
@@ -838,133 +932,151 @@
 
     <!-- Start of AVL Tree tab -->
     <div id="AVL_Tree" class="col s12">
-        <div class="card">
-            <div class="card-content">
-                <!-- Title -->
-                <span class="card-title">AVL Tree</span>
 
-                <!-- Description -->
-                <p id="AVL_Tree_Description">Description for AVL Tree</p>
+        <div class="card-panel">
+            <!-- Title -->
+            <span class="container_title">AVL Tree</span>
 
-                <!-- Form -->
-                <!-- TODO -->
+            <!-- Description -->
+            <p id="AVL_Tree_Description">Description for AVL Tree</p>
 
-            </div>
-            <div class="card-action">
-                <a href="#" class="coming-soon">Generate</a>
-                <a href="#" class="coming-soon">Preview</a>
-            </div>
+            <!-- Form -->
+            <!-- TODO -->
+
+            <br>
+            <br>
+            <hr>
+            <br>
+            <a href="#" class="coming-soon">Generate</a>
+            <a href="#" class="coming-soon">Preview Source</a>
+            <a href="#" class="coming-soon">Preview Header</a>
         </div>
+
     </div>
     <!-- End of AVL Tree tab -->
 
     <!-- Start of Binary Search Tree tab -->
     <div id="Binary_Search_Tree" class="col s12">
-        <div class="card">
-            <div class="card-content">
-                <!-- Title -->
-                <span class="card-title">Binary Search Tree</span>
 
-                <!-- Description -->
-                <p id="Binary_Search_Tree_Description">Description for Binary Search Tree</p>
+        <div class="card-panel">
+            <!-- Title -->
+            <span class="container_title">Binary Search Tree</span>
 
-                <!-- Form -->
-                <!-- TODO -->
+            <!-- Description -->
+            <p id="Binary_Search_Tree_Description">Description for Binary Search Tree</p>
 
-            </div>
-            <div class="card-action">
-                <a href="#" class="coming-soon">Generate</a>
-                <a href="#" class="coming-soon">Preview</a>
-            </div>
+            <!-- Form -->
+            <!-- TODO -->
+
+            <br>
+            <br>
+            <hr>
+            <br>
+            <a href="#" class="coming-soon">Generate</a>
+            <a href="#" class="coming-soon">Preview Source</a>
+            <a href="#" class="coming-soon">Preview Header</a>
         </div>
+
     </div>
     <!-- End of Binary Search Tree tab -->
 
     <!-- Start of Binary Heap tab -->
     <div id="Binary_Heap" class="col s12">
-        <div class="card">
-            <div class="card-content">
-                <!-- Title -->
-                <span class="card-title">Binary Heap</span>
 
-                <!-- Description -->
-                <p id="Binary_Heap_Description">Description for Binary Heap</p>
+        <div class="card-panel">
+            <!-- Title -->
+            <span class="container_title">Binary Heap</span>
 
-                <!-- Form -->
-                <!-- TODO -->
+            <!-- Description -->
+            <p id="Binary_Heap_Description">Description for Binary Heap</p>
 
-            </div>
-            <div class="card-action">
-                <a href="#" class="coming-soon">Generate</a>
-                <a href="#" class="coming-soon">Preview</a>
-            </div>
+            <!-- Form -->
+            <!-- TODO -->
+
+            <br>
+            <br>
+            <hr>
+            <br>
+            <a href="#" class="coming-soon">Generate</a>
+            <a href="#" class="coming-soon">Preview Source</a>
+            <a href="#" class="coming-soon">Preview Header</a>
         </div>
+
     </div>
     <!-- End of Binary Heap tab -->
 
     <!-- Start of Priority Heap tab -->
     <div id="Priority_Heap" class="col s12">
-        <div class="card">
-            <div class="card-content">
-                <!-- Title -->
-                <span class="card-title">Priority Heap</span>
 
-                <!-- Description -->
-                <p id="Priority_Heap_Description">Description for Priority Heap</p>
+        <div class="card-panel">
+            <!-- Title -->
+            <span class="container_title">Priority Heap</span>
 
-                <!-- Form -->
-                <!-- TODO -->
+            <!-- Description -->
+            <p id="Priority_Heap_Description">Description for Priority Heap</p>
 
-            </div>
-            <div class="card-action">
-                <a href="#" class="coming-soon">Generate</a>
-                <a href="#" class="coming-soon">Preview</a>
-            </div>
+            <!-- Form -->
+            <!-- TODO -->
+
+            <br>
+            <br>
+            <hr>
+            <br>
+            <a href="#" class="coming-soon">Generate</a>
+            <a href="#" class="coming-soon">Preview Source</a>
+            <a href="#" class="coming-soon">Preview Header</a>
         </div>
+
     </div>
     <!-- End of Priority Heap tab -->
 
     <!-- Start of Red-Black Tree tab -->
     <div id="Red-Black_Tree" class="col s12">
-        <div class="card">
-            <div class="card-content">
-                <!-- Title -->
-                <span class="card-title">Red-Black Tree</span>
 
-                <!-- Description -->
-                <p id="Red-Black_Tree_Description">Description for Red-Black Tree</p>
+        <div class="card-panel">
+            <!-- Title -->
+            <span class="container_title">Red-Black Tree</span>
 
-                <!-- Form -->
-                <!-- TODO -->
+            <!-- Description -->
+            <p id="Red-Black_Tree_Description">Description for Red-Black Tree</p>
 
-            </div>
-            <div class="card-action">
-                <a href="#" class="coming-soon">Generate</a>
-                <a href="#" class="coming-soon">Preview</a>
-            </div>
+            <!-- Form -->
+            <!-- TODO -->
+
+            <br>
+            <br>
+            <hr>
+            <br>
+            <a href="#" class="coming-soon">Generate</a>
+            <a href="#" class="coming-soon">Preview Source</a>
+            <a href="#" class="coming-soon">Preview Header</a>
         </div>
+
     </div>
     <!-- End of Red-Black Tree tab -->
 
     <!-- Start of Splay Tree tab -->
     <div id="Splay_Tree" class="col s12">
-        <div class="card">
-            <div class="card-content">
-                <!-- Title -->
-                <span class="card-title">Splay Tree</span>
 
-                <!-- Description -->
-                <p id="Splay_Tree_Description">Description for Splay Tree</p>
+        <div class="card-panel">
+            <!-- Title -->
+            <span class="container_title">Splay Tree</span>
 
-                <!-- Form -->
-                <!-- TODO -->
+            <!-- Description -->
+            <p id="Splay_Tree_Description">Description for Splay Tree</p>
 
-            </div>
-            <div class="card-action">
-                <a href="#" class="coming-soon">Generate</a>
-                <a href="#" class="coming-soon">Preview</a>
-            </div>
+            <!-- Form -->
+            <!-- TODO -->
+
+            <br>
+            <br>
+            <hr>
+            <br>
+            <a href="#" class="coming-soon">Generate</a>
+            <a href="#" class="coming-soon">Preview Source</a>
+            <a href="#" class="coming-soon">Preview Header</a>
         </div>
+
     </div>
     <!-- End of Splay Tree tab -->
 
@@ -978,12 +1090,12 @@
 <!-- End of Others Tab -->
 
 <!-- Other contents -->
-<div id="preview_header" class="modal">
+<div id="preview_screen" class="modal modal-fixed-footer">
     <div class="modal-content">
-        <pre><code id="preview_header_content" class="c++"></code></pre>
+        <pre><code id="preview_screen_content" class="c++"></code></pre>
     </div>
     <div class="modal-footer">
-        <a href="#" class="modal-close btn orange" onclick="containerDeletePreviewHeader('array')">Close</a>
+        <a href="#" class="modal-action modal-close btn orange" onclick="containerDeletePreviewHeader('array')">Close</a>
     </div>
 </div>
 
